@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Navigation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="shortcut icon" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/904328447f.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        .bi{
+  border-radius: 50%;
+}
+.nav-link{
+  color: black;
+}
+.nav-link:hover{
+  color: #dc143c;;
+}
+.btn{
+  border: 2px solid #dc143c;
+  color: black;
+  background-color: white;
+  
+}
+.btn:hover{
+  background-color: #dc143c;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.btn a{
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #dc143c;
+}
+.btn:hover a{
+  transform: scale(1.1);
+  color: white;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hn{
+            background-color: #dc143c;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .hospital-navigation {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .description {
+            width: 50%;
+            padding-right: 20px;
+        }
+
+        .map {
+            width: 600px;
+            height: 450px;
+            border: 1px solid #ccc;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .key-points {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .user-testimonial {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .btn button[type="submit"]:hover {
+    background-color: #dc143c;
+}
+    </style>
+</head>
+<body>
+    <div class="container" >
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" >
+          <div class="col-md-3 mb-2 mb-md-0">
+            <a href="e.html" class="d-inline-flex link-body-emphasis text-decoration-none">
+              <img class="bi" width="80" height="80" border-radius="50%" src="images/logo.jpg" >
+            </a>
+        </div>
+        <div class="heading">
+            <h2 >Express emergency </h2>
+        </div>
+        
+    
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="e.html" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="e.html#services" class="nav-link px-2">Services</a></li>
+            <li><a href="ms.html" class="nav-link px-2">About</a></li>
+            <li><a href="contact.html" class="nav-link px-2">Contact</a></li>
+          </ul>
+
+          <div class="col-md-3 text-end">
+            <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+            <a href="signup.html" class="btn btn-outline-primary me-2">Sign up</a>
+        </div>
+        </header>
+        </div>
+
+
+    <header class="hn">
+        <h1>Hospital Navigation</h1>
+    </header>
+    <div class="hospital-navigation">
+        <div class="description">
+            <h2 style="color:grey">Description</h2>
+            <p>
+                Finding the right medical facility during an emergency can be a daunting task, especially when time is of the essence. At Express Emergency Engineers, we provide hospital navigation services that help patients and their families locate the nearest hospital with the necessary services for their medical needs.
+            </p>
+            <p>
+                Our hospital navigation system uses advanced technology to provide precise directions to the nearest hospital. We also provide information on the availability of medical services, such as emergency rooms, trauma centers, and other specialist care units. Contact us today to learn more about our hospital navigation solutions.
+            </p>
+       
+            <button  onclick="findNearestHospitals()" style=" background-color:white ; color: black; border: 2px solid #dc143c; border-radius: 5px; " class="btn">Get Started</button>
+            <button onclick="openGoogleMaps()" style="background-color: white; color: black; border: 2px solid #dc143c; border-radius: 5px;" class="btn">Open Google Maps</button>
+       
+        </div>
+        <div id="map" class="map"></div>
+    </div>
+    
+<!-- footer -->
+<footer>
+    <div class="footer_main">
+        <div class="tag">
+            <h1>Contact</h1>
+            <a href="#"><i class="fa-solid fa-house"></i>8/38 New delhi,India</a>
+            <a href="#"><i class="fa-solid fa-phone"></i>+91 123456789</a>
+            <a href="#"><i class="fa-solid fa-envelope"></i>express_engineers@gmail.com</a>
+        </div>
+        <div class="tag">
+            <h1>Get Help</h1>
+            <a href="#" class="center">FAQ</a>
+            <a href="#" class="center">Services</a>
+            <a href="#" class="center">About</a>
+            <a href="#" class="center">More</a>
+        </div>
+        <div class="tag">
+            <h1>Follow us</h1>
+            <div class="social_link">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="tag">
+            <h1>Newsletter</h1>
+            <div class="search_bar">
+                <input type="text " placeholder="Your email id here">
+                <button type="submit">Subscribe</button>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var latitude, longitude;
+
+        function findNearestHospitals() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+
+                    var map = L.map('map').setView([latitude, longitude], 13);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    L.marker([latitude, longitude]).addTo(map)
+                        .bindPopup('Your current location')
+                        .openPopup();
+
+                    var url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=jsonv2`;
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            var currentAddress = data.display_name;
+                            console.log("Current Address: ", currentAddress);
+                        });
+
+                    var hospitalUrl = `https://nominatim.openstreetmap.org/search?format=json&lat=${latitude}&lon=${longitude}&zoom=15&amenity=hospital`;
+                    fetch(hospitalUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Nearby Hospitals: ", data);
+                            if (data.length > 0) {
+                                data.forEach(hospital => {
+                                    var marker = L.marker([hospital.lat, hospital.lon]).addTo(map)
+                                        .bindPopup(hospital.display_name);
+                                });
+                            } else {
+                                alert("No hospitals found nearby.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error fetching hospital data:", error);
+                            alert("Error fetching hospital data. Please try again later.");
+                        });
+                });
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+
+        function openGoogleMaps() {
+            window.open(`https://www.google.com/maps/search/nearby+hospital/@25.1573315,75.8139735,13z/data=!3m1!4b1?entry=ttu`);
+        }
+    </script>
+</body>
+</html>

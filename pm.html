@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Management</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="shortcut icon" href="images/logo.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/904328447f.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+.bi{
+  border-radius: 50%;
+}
+.nav-link{
+  color: black;
+}
+.nav-link:hover{
+  color: #dc143c;;
+}
+.btn{
+  border: 2px solid #dc143c;
+  color: black;
+  background-color: white;
+  
+}
+.btn:hover{
+  background-color: #dc143c;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.btn a{
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #dc143c;
+}
+.btn:hover a{
+  transform: scale(1.1);
+  color: white;
+}
+        .pm {
+            background-color: #DC143C;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .priority-management {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .case {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .case h2 {
+            margin-bottom: 10px;
+        }
+
+        .case button {
+            background-color: #DC143C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .map {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+
+       
+        .service-description {
+            padding: 20px;
+        }
+
+        .service-description h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .service-description p {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" >
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" >
+          <div class="col-md-3 mb-2 mb-md-0">
+            <a href="e.html" class="d-inline-flex link-body-emphasis text-decoration-none">
+              <img class="bi" width="80" height="80" border-radius="50%" src="images/logo.jpg" >
+            </a>
+        </div>
+        <div class="heading">
+            <h2 >Express emergency </h2>
+        </div>
+        
+    
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="e.html" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="e.html#services" class="nav-link px-2">Services</a></li>
+            <li><a href="ms.html" class="nav-link px-2">About</a></li>
+            <li><a href="contact.html" class="nav-link px-2">Contact</a></li>
+          </ul>
+
+          <div class="col-md-3 text-end">
+            <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+            <a href="signup.html" class="btn btn-outline-primary me-2">Sign up</a>
+        </div>
+        </header>
+        </div>
+
+
+    <header class="pm">
+        <h1>Priority Management</h1>
+    </header>
+    <div class="priority-management">
+        <div class="case">
+            <h2>Less Serious</h2>
+            <button onclick="showMap('lessSerious')">Select</button>
+            <p id="lessSeriousTime"></p>
+        </div>
+        <div class="case">
+            <h2>Mid Serious</h2>
+            <button onclick="showMap('midSerious')">Select</button>
+            <p id="midSeriousTime"></p>
+        </div>
+        <div class="case">
+            <h2>Emergency </h2>
+            <button onclick="showMap('emergency')">Select</button>
+            <p id="emergencyTime"></p>
+        </div>
+    </div>
+    <div class="map-container">
+        <div id="map" class="map"></div>
+    </div>
+    
+    <div class="service-description">
+        <h2 style="color: gray;">About Our Service</h2>
+        <p>
+            Our priority management system aims to provide timely assistance to individuals in need of medical attention. By selecting the appropriate case level, we guide you to the nearest hospital equipped to handle your situation, ensuring swift and efficient care.
+        </p>
+        <p>
+            Whether it's a less serious issue or an emergency, our system helps you navigate to the right medical facility, reducing response times and improving outcomes. Trust us to prioritize your health and well-being when every second counts.
+        </p>
+    </div>
+    <footer>
+        <div class="footer_main">
+            <div class="tag">
+                <h1>Contact</h1>
+                <a href="#"><i class="fa-solid fa-house"></i>8/38 New delhi,India</a>
+                <a href="#"><i class="fa-solid fa-phone"></i>+91 123456789</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i>express_engineers@gmail.com</a>
+            </div>
+            <div class="tag">
+                <h1>Get Help</h1>
+                <a href="#" class="center">FAQ</a>
+                <a href="#" class="center">Services</a>
+                <a href="#" class="center">About</a>
+                <a href="#" class="center">More</a>
+            </div>
+            <div class="tag">
+                <h1>Follow us</h1>
+                <div class="social_link">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="tag">
+                <h1>Newsletter</h1>
+                <div class="search_bar">
+                    <input type="text " placeholder="Your email id here">
+                    <button type="submit">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var latitude, longitude;
+        var map;
+
+        function getCurrentLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+
+                    map = L.map('map').setView([latitude, longitude], 13);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    L.marker([latitude, longitude]).addTo(map)
+                        .bindPopup('Your current location')
+                        .openPopup();
+                });
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+
+        function showMap(caseType) {
+            if (map) {
+                map.remove();
+            }
+            
+            map = L.map('map').setView([latitude, longitude], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            switch(caseType) {
+                case 'lessSerious':
+                var lessSeriousHospital = L.marker([latitude - 0.02, longitude - 0.02]).addTo(map)
+                        .bindPopup('Nearest hospital for less serious case');
+
+                    var lessSeriousLine = L.polyline([[latitude, longitude], [latitude - 0.02, longitude - 0.02]], {dashArray: '10,10'}).addTo(map);
+
+                    var lessSeriousTime = Math.floor(Math.random() * 60) + 30; // Random time between 30 and 90 minutes
+                    document.getElementById('lessSeriousTime').innerHTML = `Estimated Time: ${lessSeriousTime} minutes`;
+                    break;
+                case 'midSerious':
+                    var midSeriousHospital = L.marker([latitude - 0.015, longitude - 0.015]).addTo(map)
+                        .bindPopup('Nearest hospital for mid serious case');
+
+                    var midSeriousLine = L.polyline([[latitude, longitude], [latitude - 0.015, longitude - 0.015]], {dashArray: '10,10'}).addTo(map);
+
+                    var midSeriousTime = Math.floor(Math.random() * 40) + 20; // Random time between 20 and 60 minutes
+                    document.getElementById('midSeriousTime').innerHTML = `Estimated Time: ${midSeriousTime} minutes`;
+                    break;
+                case 'emergency':
+                var emergencyHospital = L.marker([latitude - 0.01, longitude - 0.01]).addTo(map)
+                        .bindPopup('Nearest hospital for emergency case');
+
+                    var emergencyLine = L.polyline([[latitude, longitude], [latitude - 0.01, longitude - 0.01]], {dashArray: '10,10'}).addTo(map);
+
+                    var emergencyTime = Math.floor(Math.random() * 20) + 10; // Random time between 10 and 30 minutes
+                    document.getElementById('emergencyTime').innerHTML = `Estimated Time: ${emergencyTime} minutes`;
+                    alert("Turning signals green. All signals turned green.");
+                    // alert("All signals turned green.");
+                    break;
+            }
+        }
+
+        getCurrentLocation();
+    </script>
+</body>
+</html>
